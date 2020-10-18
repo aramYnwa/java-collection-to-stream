@@ -9,8 +9,15 @@ public class MainComparator {
     Function<Person, Integer> fAge = p -> p.getAge();
     Function<Person, String> fFirstName = p -> p.getFirstName();
 
-    // Made the comparing generic so it can get different functions
     Comparator<Person> cmpAgeFunc = Comparator.comparing(Person::getAge);
     Comparator<Person> cmpFirstNameFunc = Comparator.comparing(Person::getFirstName);
+
+    // Now we have a fallback comparison if first comparator returns equal
+    Comparator<Person> cmp = cmpAgeFunc.thenComparing(cmpFirstNameFunc);
+
+    Person p1 = new Person("First", "Person", 5);
+    Person p2 = new Person("Second", "Person", 5);
+
+    System.out.println(cmp.compare(p2, p1));
   }
 }
