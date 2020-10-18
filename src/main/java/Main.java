@@ -6,8 +6,10 @@ public class Main {
     Predicate<String> p2 = p -> p.startsWith("A");
     Predicate<String> p3 = p -> !p.isEmpty();
 
-    Predicate<String> p = p1.and(p2).and(p3);
+    Predicate<String> andP = p1.and(p2).and(p3);
+    Predicate<String> orP = p1.or(p2);
 
-    System.out.println(p.test("Avatar"));
+    System.out.println(andP.test("Avatar"));
+    System.out.println(orP.test("Avatar"));
   }
 }
