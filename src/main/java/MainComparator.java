@@ -12,8 +12,10 @@ public class MainComparator {
     Comparator<Person> cmpAgeFunc = Comparator.comparing(Person::getAge);
     Comparator<Person> cmpFirstNameFunc = Comparator.comparing(Person::getFirstName);
 
-    // Now we have a fallback comparison if first comparator returns equal
-    Comparator<Person> cmp = cmpAgeFunc.thenComparing(cmpFirstNameFunc);
+    // Now we changed thenComparing method so we can chain method calls.
+    Comparator<Person> cmp = Comparator.comparing(Person::getAge)
+        .thenComparing(Person::getLastName)
+        .thenComparing(Person::getFirstName);
 
     Person p1 = new Person("First", "Person", 5);
     Person p2 = new Person("Second", "Person", 5);

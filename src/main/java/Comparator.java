@@ -12,4 +12,7 @@ public interface Comparator<T> {
     return (p1, p2) -> compare(p1, p2) == 0 ? c.compare(p1, p2) : compare(p1, p2);
   }
 
+  default Comparator<T> thenComparing(Function<T, Comparable> f) {
+    return thenComparing(comparing(f));
+  }
 }
