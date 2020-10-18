@@ -9,6 +9,8 @@ public class MainComparator {
     Function<Person, Integer> fAge = p -> p.getAge();
     Function<Person, String> fFirstName = p -> p.getFirstName();
 
+    // Made the comparing generic so it can get different functions
     Comparator<Person> cmpAgeFunc = Comparator.comparing(Person::getAge);
+    Comparator<Person> cmpFirstNameFunc = Comparator.comparing(Person::getFirstName);
   }
 }
