@@ -1,7 +1,11 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 
 public class Main {
 
@@ -19,11 +23,32 @@ public class Main {
 
     List<Person> people = new ArrayList(Arrays.asList(p1, p2, p3, p4, p5, p6));
 
-    people.removeIf(p -> p.getAge() > 30);
-    people.replaceAll(p -> new Person(p.getName().toUpperCase(), p.getAge()));
-    people.sort(Comparator.comparing(Person::getAge).thenComparing(Person::getName).reversed());
+//    people.removeIf(p -> p.getAge() > 30);
+//    people.replaceAll(p -> new Person(p.getName().toUpperCase(), p.getAge()));
+//    people.sort(Comparator.comparing(Person::getAge).thenComparing(Person::getName).reversed());
+//
+//    people.forEach(System.out::println);
 
-    people.forEach(System.out::println);
+    Map<City, List<Person>> map = new HashMap<>();
 
+    map.computeIfAbsent(paris, city -> new ArrayList(Arrays.asList(p2, p3)));
+    map.computeIfAbsent(shanghai, city -> new ArrayList<>()).add(p4);
+    map.computeIfAbsent(newYork, city -> new ArrayList<>()).add(p5);
+
+    Map<City, List<Person>> map2 = new HashMap<>();
+    map2.computeIfAbsent(shanghai, city -> new ArrayList<>()).add(p1);
+    map2.computeIfAbsent(shanghai, city -> new ArrayList<>()).add(p3);
+
+    System.out.println("People in shanghai " + map2.getOrDefault(shanghai, Collections.emptyList()));
+
+    map.forEach(
+      (city, peopleList) ->
+        map2.merge(city, peopleList, (peopleFromMap1, peopleFromMap2) -> {
+          peopleFromMap1.addAll(peopleFromMap2);
+          return peopleFromMap1;
+        })
+    );
+
+    System.out.println("People in shanghai " + map2.getOrDefault(shanghai, Collections.emptyList()));
   }
 }
