@@ -14,9 +14,15 @@ public class Main {
       .accept("!!!");
     Stream<String> stringStream = builder.build();
 
-    stringStream
-      .skip(2)  // Skips the first 2 elements
-      .limit(3) // Then selecting only next 3 elements
-      .forEach(System.out::println);
+    // These all operators might not evaluate all elements of stream.
+    // They terminate if the condition is not true
+    boolean anyString = stringStream
+      .anyMatch(p -> p.length() > 5);
+
+    boolean allStrings = stringStream
+      .allMatch(p -> p.length() > 5);
+
+    boolean nonString = stringStream
+      .noneMatch(p -> p.length() > 5);
   }
 }
