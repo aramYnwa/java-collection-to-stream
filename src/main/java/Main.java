@@ -1,3 +1,4 @@
+import java.util.Optional;
 import java.util.stream.Stream;
 
 public class Main {
@@ -14,15 +15,19 @@ public class Main {
       .accept("!!!");
     Stream<String> stringStream = builder.build();
 
-    // These all operators might not evaluate all elements of stream.
-    // They terminate if the condition is not true
-    boolean anyString = stringStream
-      .anyMatch(p -> p.length() > 5);
+//    Optional<String> firstOptional =
+//      stringStream
+//        .filter(p -> p.length() > 5)
+//        .findFirst();
+//
+//    firstOptional.ifPresent(System.out::println);
 
-    boolean allStrings = stringStream
-      .allMatch(p -> p.length() > 5);
+    Optional<String> anyOptional =
+      stringStream
+        .filter(p -> p.length() > 3)
+        .findAny();
 
-    boolean nonString = stringStream
-      .noneMatch(p -> p.length() > 5);
+    anyOptional.ifPresent(System.out::println);
+
   }
 }
