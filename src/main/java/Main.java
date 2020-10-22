@@ -1,6 +1,8 @@
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Main {
@@ -19,5 +21,8 @@ public class Main {
 
     Stream<String> stringStream2 = Stream.iterate("+", p -> p + "+");
     stringStream2.limit(5).forEach(System.out::println);
+
+    IntStream intStream = ThreadLocalRandom.current().ints();
+    intStream.limit(5).forEach(System.out::println);
   }
 }
