@@ -9,7 +9,7 @@ public class Main {
     Stream<String> stringStream = builder.build();
 
     // Peek is a intermediate call. This results to nothing
-    // Stream needs terminal call to work. System.out.println is terminal call.
+    // Stream needs terminal call to work. for each is terminal call.
     stringStream
       .map(String::length)
       .peek(System.out::println)
