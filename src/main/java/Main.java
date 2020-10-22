@@ -8,7 +8,10 @@ public class Main {
     builder.add("Hello").add("World").accept("!!!");
     Stream<String> stringStream = builder.build();
 
-    stringStream.forEach(System.out::println);
-
+    // Peek is a intermediate call. This results to nothing
+    stringStream
+      .map(String::length)
+      .filter(s -> s > 3)
+      .peek(System.out::println);
   }
 }
