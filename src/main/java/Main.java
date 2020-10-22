@@ -17,5 +17,7 @@ public class Main {
     Stream<String> stringStream = Stream.generate(() -> "one");
     stringStream.limit(5).forEach(System.out::println);
 
+    Stream<String> stringStream2 = Stream.iterate("+", p -> p + "+");
+    stringStream2.limit(5).forEach(System.out::println);
   }
 }
