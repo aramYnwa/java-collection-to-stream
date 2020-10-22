@@ -1,3 +1,5 @@
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -5,29 +7,12 @@ public class Main {
 
   public static void main(String[] args) {
 
-    Stream.Builder<String> builder = Stream.builder();
-    builder.add("Hello")
-      .add("World,")
-      .add("wish")
-      .add("you")
-      .add("the")
-      .add("best")
-      .accept("!!!");
-    Stream<String> stringStream = builder.build();
+    List<Integer> ints = Arrays.asList(0, 1, 2, 3, 4);
 
-//    Optional<String> firstOptional =
-//      stringStream
-//        .filter(p -> p.length() > 5)
-//        .findFirst();
-//
-//    firstOptional.ifPresent(System.out::println);
+    Stream<Integer> stream1 = ints.stream();
+    Stream<Integer> stream = Stream.of(0,1,2,3,4);
 
-    Optional<String> anyOptional =
-      stringStream
-        .filter(p -> p.length() > 3)
-        .findAny();
-
-    anyOptional.ifPresent(System.out::println);
+    stream.forEach(System.out::println);
 
   }
 }
