@@ -9,9 +9,12 @@ public class Main {
     Stream<String> stringStream = builder.build();
 
     // Peek is a intermediate call. This results to nothing
+    // Stream needs terminal call to work. System.out.println is terminal call.
     stringStream
       .map(String::length)
+      .peek(System.out::println)
       .filter(s -> s > 3)
-      .peek(System.out::println);
+      .forEach(System.out::println);
+
   }
 }
