@@ -14,5 +14,8 @@ public class Main {
 
     stream.forEach(System.out::println);
 
+    Stream<String> stringStream = Stream.generate(() -> "one");
+    stringStream.limit(5).forEach(System.out::println);
+
   }
 }
