@@ -5,16 +5,18 @@ public class Main {
   public static void main(String[] args) {
 
     Stream.Builder<String> builder = Stream.builder();
-    builder.add("Hello").add("World").accept("!!!");
+    builder.add("Hello")
+      .add("World,")
+      .add("wish")
+      .add("you")
+      .add("the")
+      .add("best")
+      .accept("!!!");
     Stream<String> stringStream = builder.build();
 
-    // Peek is a intermediate call. This results to nothing
-    // Stream needs terminal call to work. for each is terminal call.
     stringStream
-      .map(String::length)
-      .peek(System.out::println)
-      .filter(s -> s > 3)
+      .skip(2)  // Skips the first 2 elements
+      .limit(3) // Then selecting only next 3 elements
       .forEach(System.out::println);
-
   }
 }
